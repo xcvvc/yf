@@ -66,10 +66,11 @@ symList = open ( "symbol-list.txt" )
 symArray = symList.readlines()
 
 for myCompany in symArray:
-    myCompany = myCompany.lower()
+    myCompany = myCompany.lower()[:-1]
     print(myCompany)
-    input = open( r"text-files/mar-2022/line21" + "-" + myCompany[:-1] + "-" + myDesc + ".txt", "r")
-    output = open( r"parsed-files/mar-2022/line21" + "-" + myCompany[:-1] + "-" + myDesc + ".txt", "w")
+    
+    input = open ( r"text-files/mar-2022/line21" + "-" + myCompany + "-" + myDesc + ".txt", "r")
+    output = open ( r"parsed-files/mar-2022/line21" + "-" + myCompany + "-" + myDesc + ".txt", "w")
     myBlock = ''
 
     info = ''
