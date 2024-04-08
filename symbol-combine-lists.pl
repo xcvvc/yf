@@ -9,6 +9,82 @@
 #  March 12, 2021
 
 
+# for SP, just use wikipedia. tab delimited
+
+open RUSSELL, ("<data/russell.txt") or die;
+while( $line = <RUSSELL> )
+{
+chomp $line;
+@_ = split ("\t", $line);
+$company{$_[0]} = $_[1];
+ 
+#print $company{$_[0]}, "\t", $_[0], "\n";
+}
+
+close RUSSELL;
+
+# AAON 	AAON, Inc. 	Industrials 	Building Products 	Tulsa, Oklahoma 	view 	0000824142
+
+open SP600, ("<data/sp600.txt") or die;
+
+while ($line = <SP600>) {
+@_ = split ("\t", $line );
+$company{$_[0]} = $_[1];
+
+# print $company{$_[0]}, "\t", $_[0], "\n";
+
+}
+close SP600;
+
+
+# AA 	Alcoa 	Materials 	Aluminum 	Pittsburgh, Pennsylvania 	reports
+
+open SP400, ("<data/sp400.txt") or die;
+
+while ($line = <SP400>) {
+@_ = split ("\t", $line );
+$company{$_[0]} = $_[1];
+
+# print $company{$_[0]}, "\t", $_[0], "\n";
+
+}
+close SP400;
+
+# ADBE 	Adobe Inc. 	Information Technology 	Application Software 	San Jose, California 	1997-05-05 	0000796343 	1982
+
+open SP500, ("<data/sp500.txt") or die;
+
+while ($line = <SP500>) {
+@_ = split ("\t", $line );
+$company{$_[0]} = $_[1];
+
+print $company{$_[0]}, "\t", $_[0], "\n";
+
+}
+close SP400;
+
+
+
+$how_many = keys %company;
+print "this many:  $how_many\n";
+
+open OUTLIST, (">symbol-list.txt");
+
+@symbols = sort keys %company;
+foreach $each_one (@symbols) {
+    print OUTLIST "$each_one\n";
+   print "$each_one\r";
+}
+close OUTLIST;
+print "\n";
+
+
+exit;
+
+#**************************************************************
+# old code from prior sources
+#************************************************************
+
 open RUSSELL, ("<russell.txt") or die;
 $line = <RUSSELL>;
 chomp $line;
