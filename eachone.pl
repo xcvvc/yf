@@ -8,6 +8,7 @@ while (<SYM>) {
 }
 $countdown = 80;
 foreach $company (@sym_array) {
+        if ( $company lt "RDVT" ) { next; }  # example of skipping over a few thousand symbols.	
 # @symbols = ( "AAL" );
 # foreach $company ( @symbols ) {
 
